@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodie/home.dart';
+// import 'package:foodie/mr_cheezy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Foodie',
       theme: ThemeData(
-        fontFamily: "Unbounded"
+        fontFamily: "Unbounded",
+        colorScheme: ColorScheme.light(onPrimaryContainer: Colors.white)
+        
       ),
       home: Home(),
       );

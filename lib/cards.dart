@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 Widget promoCard({
   required String title,
   required String subtitle,
@@ -10,9 +7,10 @@ Widget promoCard({
   required Color backgroundColor,
   Color blurColor = Colors.white,
   required BuildContext context,
-  
 }) {
   double screenWidth = MediaQuery.of(context).size.width;
+  double screenHeight = MediaQuery.of(context).size.height;
+
   return SizedBox(
     width: screenWidth * 0.86,
     height: 140,
@@ -99,6 +97,36 @@ Widget categoryCard({
           right: -9,
           child: Image.asset(catImage, scale: catScale),
         ),
+      ],
+    ),
+  );
+}
+
+Widget ingredentCard({
+  required String ingImg,
+  required String ingTitle,
+  required String ingPrice,
+}) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+
+    decoration: BoxDecoration(
+      color: Color.fromRGBO(255, 255, 242, 1),
+      borderRadius: BorderRadius.circular(28),
+      boxShadow: [
+        BoxShadow(
+          color: Color.fromRGBO(214, 211, 192, 0.200),
+          blurRadius: 10.0,
+          spreadRadius: 5.0,
+        ),
+      ],
+    ),
+    child: Column(
+      children: [
+        Image.asset(ingImg, height: 100, width: 92),
+        SizedBox(height: 2),
+        Text(ingTitle, style: TextStyle(fontSize: 11)),
+        Text(ingPrice, style: TextStyle(fontSize: 11)),
       ],
     ),
   );
