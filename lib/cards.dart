@@ -9,7 +9,7 @@ Widget promoCard({
   required BuildContext context,
 }) {
   double screenWidth = MediaQuery.of(context).size.width;
-  double screenHeight = MediaQuery.of(context).size.height;
+  // double screenHeight = MediaQuery.of(context).size.height;
 
   return SizedBox(
     width: screenWidth * 0.86,
@@ -130,4 +130,131 @@ Widget ingredentCard({
       ],
     ),
   );
+}
+
+class MenuItem {
+  final String name;
+  final double unitPrice;
+  int quantity;
+
+  MenuItem({required this.name, required this.unitPrice, this.quantity = 1});
+
+  double get totalPrice => unitPrice * quantity;
+}
+
+class MenuItemTile extends StatelessWidget {
+  final MenuItem item;
+  final String imagePath;
+  final double screenWidth;
+  final double screenHeight;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
+
+  const MenuItemTile({
+    super.key,
+    required this.item,
+    required this.imagePath,
+    required this.screenWidth,
+    required this.screenHeight,
+    required this.onIncrement,
+    required this.onDecrement,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(top: screenHeight * 0.03),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+      height: screenHeight * 0.12,
+      width: screenWidth * 0.9,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(247, 237, 226, 1),
+            spreadRadius: 10,
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(imagePath, scale: 3),
+          Expanded(child: SizedBox(width: screenWidth * 0.03)),
+          Padding(
+            padding: EdgeInsets.only(
+              // left: screenWidth * 0.04,
+              // right: screenWidth * 0.09,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Color.fromRGBO(61, 64, 91, 1),
+                  ),
+                ),
+                Text(
+                  '\$${item.totalPrice.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    color: Color.fromRGBO(242, 132, 130, 1),
+                    fontSize: 10,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(child: SizedBox(width: screenWidth * 0.03)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: onDecrement,
+                child: Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(194, 191, 172, 0.207),
+                  ),
+                  child: Icon(
+                    Icons.remove,
+                    size: screenWidth * 0.05,
+                    color: Color.fromRGBO(242, 132, 130, 1),
+                  ),
+                ),
+              ),
+              SizedBox(width: screenWidth * 0.05),
+              Text(
+                item.quantity.toString(),
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
+              ),
+              SizedBox(width: screenWidth * 0.05),
+              GestureDetector(
+                onTap: onIncrement,
+                child: Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(242, 132, 130, 1),
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    size: screenWidth * 0.05,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
