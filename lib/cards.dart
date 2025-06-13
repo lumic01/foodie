@@ -164,52 +164,50 @@ class MenuItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: screenHeight * 0.03),
+      margin: EdgeInsets.only(
+        top: screenHeight * 0.015,
+        left: screenWidth * 0.02,
+        right: screenWidth * 0.02,
+      ),
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 15),
-      height: screenHeight * 0.12,
+      height: screenHeight * 0.09,
       width: screenWidth * 0.9,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(247, 237, 226, 1),
+            color: Color.fromRGBO(247, 237, 226, 0.664),
             spreadRadius: 10,
-            blurRadius: 5,
+            blurRadius: 10,
           ),
         ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(imagePath, scale: 3),
+          Image.asset(imagePath, scale: 4),
           Expanded(child: SizedBox(width: screenWidth * 0.03)),
-          Padding(
-            padding: EdgeInsets.only(
-              // left: screenWidth * 0.04,
-              // right: screenWidth * 0.09,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.name,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color.fromRGBO(61, 64, 91, 1),
-                  ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item.name,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Color.fromRGBO(61, 64, 91, 1),
                 ),
-                Text(
-                  '\$${item.totalPrice.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    color: Color.fromRGBO(242, 132, 130, 1),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w300,
-                  ),
+              ),
+              Text(
+                '\$${item.totalPrice.toStringAsFixed(2)}',
+                style: TextStyle(
+                  color: Color.fromRGBO(242, 132, 130, 1),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w300,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Expanded(child: SizedBox(width: screenWidth * 0.03)),
           Row(
